@@ -4,7 +4,7 @@ from Cython.Build import cythonize
 
 LoRa_Extension = Extension(
 	name="lorthon",
-	sources=["lorthon.pyx"],
+	sources=["src/cython/lorthon.pyx"],
 	libraries=["interface_lora", "loragw", "parson"],
 	library_dirs=["lib"],
 	include_dirs=["inc", "libloragw/inc", "parson"]

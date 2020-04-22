@@ -2,5 +2,5 @@
 outputFile=$(find lorthon.*.so)
 mv $outputFile lorthon.so
 mkdir -p output
-cp lorthon.so tst/lorthon.so
+cp lorthon.so test/lorthon.so
 mv lorthon.so output/lorthon.so
