@@ -17,6 +17,7 @@ Prerequisites:
         pip3
 Compiling: 
 	```git clone https://github.com/timonTscheulin/lorthon.git```
+        The original repo you can get from ```git clone https://github.com/galalmounir/lorthon.git```
 	Run `sh install.sh` to compile and generate the python library.
 
 # Usage
