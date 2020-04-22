@@ -12,10 +12,11 @@ LoRthon is a Python wrapper for the LoRa Gateway project from Lora-net/lora_gate
 	- Set TX and RX settings.
 
 # Installation
-Prerequisites: 
-	`pip install cython`
+Prerequisites:
+        python3
+        pip3
 Compiling: 
-	```git clone https://github.com/galalmounir/lorthon.git```
+	```git clone https://github.com/timonTscheulin/lorthon.git```
 	Run `sh install.sh` to compile and generate the python library.
 
 # Usage
@@ -71,8 +72,6 @@ lorthon.py_LoRaInit("global_conf.json")
 lorthon.py_LoRaTx(915000000, 0, 0, 22, 0x03, 0x02, 1, 15, False, False, "HELLO WORLD", 11)
 lorthon.py_LoRaStop();	
 ```
-# Next Steps
-- python 3 support
 
 # Contribution 
 I am continuously improving on lorthon. I will always merge working bug fixes. However, if you want to add something new to the library, please create an "issue" on github for this first so we can discuss if it should end up in the library before you start implementing it.
