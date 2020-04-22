@@ -1,0 +1,53 @@
+diff --git a/Makefile b/Makefile
+index d61615c..d587393 100644
+--- a/Makefile
++++ b/Makefile
+@@ -11,6 +11,7 @@ default: libparson.a libloragw.a libinterface_lora.a
+ 	mkdir -p output
+ 	mv lorthon.cpython*.so tst/lorthon.so
+ 	cp tst/lorthon.so output/lorthon.so
++	#sh postBuild.sh
+ 
+ libloragw.a:
+ 	$(MAKE) -C libloragw
+diff --git a/README.md b/README.md
+index a863ae7..92f7ecb 100644
+--- a/README.md
++++ b/README.md
+@@ -16,7 +16,7 @@ Prerequisites:
+ 	`pip install cython`
+ Compiling: 
+ 	```git clone https://github.com/galalmounir/lorthon.git```
+-	Run `make` to to compile and generate the python library.
++	Run `sh install.sh` to compile and generate the python library.
+ 
+ # Usage
+ Once compiled, the library will be generated inside the `output` folder. Copy the lorthon.so file to your python project directory.
+diff --git a/lorthon.pyx b/lorthon.pyx
+index f12c7a1..504d781 100644
+--- a/lorthon.pyx
++++ b/lorthon.pyx
+@@ -1,3 +1,4 @@
++import os
+ cdef extern from "interface_lora.h":
+      void LoRaTx( unsigned int freq, char tx_mode,
+                   char rf_chain, char rf_power, 
+@@ -9,14 +10,13 @@ cdef extern from "interface_lora.h":
+      char* LoRaRx();
+ 
+ def py_LoRaTx(freq: int, tx_mode: int, rf_chain: int, rf_power: int, bandwidth: int, datarate: int, 
+-		coderate: int, preamble: int, no_crc: bool, no_header: bool, payload: bytes, size: int) -> None:
+-    LoRaTx(freq, tx_mode, rf_chain, rf_power, bandwidth, datarate, coderate, preamble, no_crc, no_header, payload, size)
++        coderate: int, preamble: int, no_crc: bool, no_header: bool, payload: str, size: int) -> None:
+ 
++    LoRaTx(freq, tx_mode, rf_chain, rf_power, bandwidth, datarate, coderate, preamble, no_crc, no_header, payload.encode('utf-8'), size)
+ def py_LoRaInit(confFile):
+-    confFile = bytes(confFile, 'ascii')
+-    value = LoRaInit (confFile)
++    os.system('sudo gwrst')
++    value = LoRaInit (confFile.encode('utf-8'))
+     return value
+-
+ def py_LoRaStop():
+     LoRaStop()
+ 
