@@ -11,6 +11,7 @@ default: libparson.a libloragw.a libinterface_lora.a
 	mkdir -p output
 	mv lorthon.cpython*.so tst/lorthon.so
 	cp tst/lorthon.so output/lorthon.so
+	#sh postBuild.sh
 
 libloragw.a:
 	$(MAKE) -C libloragw
